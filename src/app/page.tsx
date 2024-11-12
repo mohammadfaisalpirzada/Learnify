@@ -57,17 +57,19 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      
+    <div className="min-h-screen bg-gray-50 ">
+      <div className='bg-white h-1'>
+        <h1> </h1>
+      </div>
           {/* Hero Section with Animation */}
-      <section className="bg-indigo-600 text-white py-20 animate-fadeIn">
+      <section className="bg-indigo-600 text-white py-2 animate-fadeIn">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="space-y-6 animate-slideUp">
-            <h1 className="text-5xl font-bold leading-tight">
-              Empower Your Learning Journey
+            <h1 className="text-6xl font-bold leading-tight">
+              Empower Your Learning Journey 
             </h1>
             <p className="text-xl text-indigo-100 max-w-2xl">
-              Discover comprehensive tutorials, build practical projects, and advance your skills with Learnify.
+              Discover comprehensive tutorials, build practical projects, and advance your skills with Learnify (Master Sahub).
             </p>
             <div className="pt-4">
               <button className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition duration-300 flex items-center group">
@@ -80,6 +82,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+
+
 
       {/* Features Section */}
       <section className="py-16 animate-fadeIn animation-delay-300">
@@ -160,13 +165,13 @@ const HomePage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-indigo-600 text-white py-16 animate-fadeIn animation-delay-900">
+      <section className="bg-indigo-600 text-white py-8 animate-fadeIn animation-delay-900">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Learning?</h2>
           <p className="text-indigo-100 mb-8 max-w-2xl mx-auto">
             Join thousands of learners who are already advancing their careers with Learnify.
           </p>
-          <button className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition duration-300">
+          <button className="bg-white text-indigo-600 px-8 py-1 rounded-lg font-semibold hover:bg-indigo-50 transition duration-300">
             Get Started Today
           </button>
         </div>

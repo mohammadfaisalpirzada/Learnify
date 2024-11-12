@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const Navbar: React.FC = () => {
@@ -7,24 +7,39 @@ const Navbar: React.FC = () => {
 
   const handleToggleMenu = () => {
     setIsMobileOpen(!isMobileOpen);
+
+
+    document.body.style.overflow = isMobileOpen ? 'auto' : 'hidden';
   };
+
+  // Clean up when the component unmounts
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'auto'; 
+    };
+  }, []);
 
   return (
     <nav className="bg-indigo-600 text-white p-2 flex items-center justify-between text-xl">
       {/* Logo */}
-      <div className="text-2xl font-bold">Learnify</div>
+      <div className="text-3xl font-bold">Learnify</div>
 
       {/* Desktop Links */}
       <div className="hidden md:flex flex-1 justify-center">
-      <ul className="flex space-x-7">
-        {["Home", "Portfolio", "Resume Builder", "Contact"].map((item) => (
-          <li key={item}>
+        <ul className="flex space-x-7">
+          {["Home", "Portfolio", "Resume Builder", "Contact"].map((item) => (
+            <li key={item}>
+              <a
+                href={item === "Home" ? "/" : `/${item.toLowerCase().replace(' ', '-')}`}
+                className="hover:text-gray-300"
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-            <a href={item === "Home" ? "/" : `/${item.toLowerCase()}`}  className="hover:text-gray-300">{item}</a>
-          </li>
-        ))}
-      </ul>
-</div>
       {/* Search Bar and Profile Image (Desktop Only) */}
       <div className="hidden md:flex items-center space-x-7">
         <input
@@ -52,27 +67,25 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Links (Horizontally Aligned) */}
+      {/* Mobile Links */}
       {isMobileOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-gray-800 flex flex-col items-center space-y-4 py-4">
-          <div className="flex space-x-4">
-            {["Home", "Portfolio", "ResumeBuilder", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`/${item.toLowerCase()}`}
-                className="hover:text-gray-300"
-                onClick={() => setIsMobileOpen(false)}  // Close menu on click
-              >
-                {item}
-              </a>
-            ))}
-          </div>
+        <div className="md:hidden fixed inset-0 bg-gray-800 bg-opacity-95 flex flex-col items-center space-y-6 py-10 z-50">
+          {["Home", "Portfolio", "Resume Builder", "Contact"].map((item) => (
+            <a
+              key={item}
+              href={item === "Home" ? "/" : `/${item.toLowerCase().replace(' ', '-')}`}
+              className="text-white text-xl hover:text-gray-300"
+              onClick={() => setIsMobileOpen(false)}  // Close menu on click
+            >
+              {item}
+            </a>
+          ))}
           <input
             type="text"
             placeholder="Search..."
             className="bg-indigo-300 p-2 rounded w-10/12 text-black mt-4"
           />
-          <div className="w-10 h-10 rounded-full overflow-hidden mt-2">
+          <div className="w-10 h-10 rounded-full overflow-hidden mt-4">
             <Image src='/images/profile.jpg' alt="Profile" width={40} height={40} />
           </div>
         </div>
